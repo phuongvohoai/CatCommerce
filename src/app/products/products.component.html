@@ -1,8 +1,14 @@
 <div class="card" style="width: 20rem;">
-    <img class="card-img-top img-thumbnail border-0 p-0" src="/assets/img/cat01.jpg" alt="Cat 01">
-    <div class="card-block">
-      <h4 class="card-title">Yellow cat</h4>
-      <p class="card-text">$30</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+  <img class="card-img-top img-thumbnail border-0 p-0" src="{{ product.imagePath }}" alt="Cat 01">
+  <div class="card-block">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.price }}</p>
   </div>
+  <button *ngIf="!isActiveItemCount" (click)="addToCart()" type="button" class="btn btn-primary full-width">
+            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+            Add to Cart
+        </button>
+  <app-item-count *ngIf="isActiveItemCount" [currentQuantity]="product?.quantity" (quantityChangedEvent)="onQuantityChanged($event)">
+
+  </app-item-count>
+</div>
